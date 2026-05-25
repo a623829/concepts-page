@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "知识蒸馏",
-      "explanation": "大模型压缩为小模型的技术"
+      "name": "图神经网络",
+      "explanation": "处理图结构数据的神经网络模型"
     },
     {
-      "name": "对抗训练",
-      "explanation": "通过对抗样本增强鲁棒性"
+      "name": "对抗生成网络",
+      "explanation": "生成器和判别器博弈学习"
     },
     {
       "name": "自监督学习",
-      "explanation": "利用数据自身结构进行训练"
+      "explanation": "无需人工标注的表示学习"
     }
   ],
   "programming_concepts": [
     {
-      "name": "引用透明",
-      "explanation": "表达式可被其值替换不变"
+      "name": "协程",
+      "explanation": "用户态轻量级线程调度"
     },
     {
-      "name": "惰性求值",
-      "explanation": "延迟计算直到需要结果时"
+      "name": "闭包",
+      "explanation": "函数绑定外部变量的环境"
     },
     {
-      "name": "协变与逆变",
-      "explanation": "类型参数在继承中的变化方向"
+      "name": "反射",
+      "explanation": "运行时检查并修改自身结构"
     }
   ],
   "finance_concepts": [
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效"
+      "name": "有效市场假说",
+      "explanation": "价格反映所有可用信息"
     },
     {
-      "name": "费雪效应",
-      "explanation": "名义利率随通胀预期调整"
+      "name": "货币乘数",
+      "explanation": "基础货币创造存款的倍数"
     },
     {
-      "name": "格雷欣法则",
-      "explanation": "劣币驱逐良币现象"
+      "name": "菲利普斯曲线",
+      "explanation": "失业与通胀间的反向关系"
     }
   ]
 }
