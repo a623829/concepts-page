@@ -34,7 +34,7 @@ jobs:
           if git diff --quiet; then
             echo "无数据变更，跳过提交"
           else
-            git pull --rebase origin main
+            git pull --rebase --autostash origin main
             git add frontend/concepts.json
             git commit -m "data: 每日自动更新 concepts.json"
             git push
