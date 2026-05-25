@@ -357,7 +357,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
   animation: toastIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   pointer-events: auto;
-  max-width: 320px;
+  max-width: 340px;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
@@ -378,7 +378,7 @@ body {
   to   { opacity: 0; transform: translateY(-10px) scale(0.9); }
 }
 
-/* ====== Token 弹窗 ====== */
+/* ====== 设置弹窗 ====== */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -400,7 +400,7 @@ body {
   background: var(--card-bg);
   border-radius: 28px;
   padding: 32px 28px 24px;
-  max-width: 380px;
+  max-width: 400px;
   width: 100%;
   box-shadow: 0 16px 48px rgba(0,0,0,0.2);
   animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
@@ -414,43 +414,61 @@ body {
 .modal h2 {
   font-size: 1.2rem;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   letter-spacing: -0.01em;
 }
 
-.modal p {
-  font-size: 0.88rem;
+.modal .modal-sub {
+  font-size: 0.82rem;
   color: var(--text-sub);
   margin-bottom: 20px;
   line-height: 1.5;
 }
 
+.modal label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+
+.modal label:first-of-type {
+  margin-top: 0;
+}
+
 .modal input {
   width: 100%;
-  padding: 14px 16px;
+  padding: 13px 16px;
   border: 1.5px solid var(--border);
-  border-radius: 14px;
-  font-size: 0.92rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
   background: var(--bg);
   color: var(--text);
   outline: none;
   transition: border-color 0.2s;
   font-family: inherit;
-  margin-bottom: 16px;
 }
 
 .modal input:focus {
   border-color: var(--accent);
 }
 
+.modal input::placeholder {
+  color: var(--text-sub);
+  opacity: 0.5;
+}
+
 .modal-actions {
   display: flex;
   gap: 10px;
+  margin-top: 22px;
 }
 
 .modal-actions button {
   flex: 1;
-  padding: 12px;
+  padding: 13px;
   border-radius: 14px;
   font-size: 0.92rem;
   font-weight: 600;
@@ -548,7 +566,7 @@ body {
     height: 52px;
   }
   .fab svg { width: 24px; height: 24px; }
-  .modal { padding: 28px 20px 20px; }
+  .modal { padding: 28px 18px 20px; }
 }
 
 @media (max-width: 400px) {
@@ -613,15 +631,21 @@ body {
 <!-- Toast 容器 -->
 <div class="toast-container" id="toastContainer"></div>
 
-<!-- Token 弹窗（初始隐藏） -->
-<div class="modal-overlay" id="tokenModal" style="display:none;">
+<!-- 设置弹窗（初始隐藏） -->
+<div class="modal-overlay" id="settingsModal" style="display:none;">
   <div class="modal">
-    <h2>设置访问令牌</h2>
-    <p>需要 GitHub 令牌才能触发数据更新。<br>令牌仅保存在本地浏览器中。</p>
-    <input type="password" id="tokenInput" placeholder="输入 GitHub Personal Access Token" autocomplete="off">
+    <h2>设置</h2>
+    <p class="modal-sub">配置 API 密钥，用于即时刷新数据</p>
+
+    <label>DeepSeek API Key <span style="color:var(--error-text)">*</span></label>
+    <input type="password" id="dsKeyInput" placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+
+    <label>GitHub Token（可选，用于持久化）</label>
+    <input type="password" id="ghTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+
     <div class="modal-actions">
-      <button class="btn-cancel" id="tokenCancel">取消</button>
-      <button class="btn-confirm" id="tokenConfirm" disabled>确认</button>
+      <button class="btn-cancel" id="settingsCancel">取消</button>
+      <button class="btn-confirm" id="settingsConfirm" disabled>保存</button>
     </div>
   </div>
 </div>
@@ -634,18 +658,19 @@ body {
   'use strict';
 
   // DOM 元素
-  var contentEl   = document.getElementById('content');
-  var toggleBtn   = document.getElementById('themeToggle');
-  var htmlEl      = document.documentElement;
-  var fabBtn      = document.getElementById('fabBtn');
-  var toastCtn    = document.getElementById('toastContainer');
-  var tokenModal  = document.getElementById('tokenModal');
-  var tokenInput  = document.getElementById('tokenInput');
-  var tokenConfirm= document.getElementById('tokenConfirm');
-  var tokenCancel = document.getElementById('tokenCancel');
-  var pullInd     = document.getElementById('pullIndicator');
-  var pullArrow   = document.getElementById('pullArrow');
-  var pullText    = document.getElementById('pullText');
+  var contentEl    = document.getElementById('content');
+  var toggleBtn    = document.getElementById('themeToggle');
+  var htmlEl       = document.documentElement;
+  var fabBtn       = document.getElementById('fabBtn');
+  var toastCtn     = document.getElementById('toastContainer');
+  var settingsModal= document.getElementById('settingsModal');
+  var dsKeyInput   = document.getElementById('dsKeyInput');
+  var ghTokenInput = document.getElementById('ghTokenInput');
+  var settingsConf = document.getElementById('settingsConfirm');
+  var settingsCanc = document.getElementById('settingsCancel');
+  var pullInd      = document.getElementById('pullIndicator');
+  var pullArrow    = document.getElementById('pullArrow');
+  var pullText     = document.getElementById('pullText');
 
   // ====== 深色/浅色模式 ======
 
@@ -660,7 +685,6 @@ body {
     htmlEl.setAttribute('data-theme', theme);
     toggleBtn.textContent = theme === 'dark' ? '☽' : '☀';
     localStorage.setItem('theme', theme);
-    // 更新 theme-color meta
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) {
       meta.content = theme === 'dark' ? '#1c1c1e' : '#f5f5f7';
@@ -683,76 +707,156 @@ body {
 
   function showToast(msg, type) {
     var el = document.createElement('div');
-    el.className = 'toast' + (type === 'error' ? ' toast-error' : '');
+    el.className = 'toast';
     el.textContent = msg;
     toastCtn.appendChild(el);
 
     setTimeout(function () {
       el.classList.add('out');
       setTimeout(function () { el.remove(); }, 300);
-    }, 2500);
+    }, 2800);
   }
 
-  // ====== Token 管理 ======
+  // ====== Keys 管理 ======
 
-  function getToken() {
+  function getDeepSeekKey() {
+    return localStorage.getItem('ds_key') || '';
+  }
+
+  function getGitHubToken() {
     return localStorage.getItem('gh_token') || '';
   }
 
-  function setToken(val) {
-    localStorage.setItem('gh_token', val);
-  }
+  // ====== 设置弹窗 ======
 
-  function showTokenModal(callback) {
-    tokenModal.style.display = 'flex';
-    tokenInput.value = getToken();
-    tokenConfirm.disabled = tokenInput.value.trim().length === 0;
-    tokenInput.focus();
+  function openSettings(callback) {
+    dsKeyInput.value = getDeepSeekKey();
+    ghTokenInput.value = getGitHubToken();
+    settingsModal.style.display = 'flex';
+    settingsConf.disabled = dsKeyInput.value.trim().length === 0;
+    dsKeyInput.focus();
 
     function onConfirm() {
-      var val = tokenInput.value.trim();
-      if (!val) return;
-      setToken(val);
-      tokenModal.style.display = 'none';
+      var dsKey = dsKeyInput.value.trim();
+      if (!dsKey) return;
+      localStorage.setItem('ds_key', dsKey);
+      localStorage.setItem('gh_token', ghTokenInput.value.trim());
+      settingsModal.style.display = 'none';
       cleanup();
-      callback(val);
+      callback(true);
     }
 
     function onCancel() {
-      tokenModal.style.display = 'none';
+      settingsModal.style.display = 'none';
       cleanup();
-      callback(null);
+      callback(false);
     }
 
     function onInput() {
-      tokenConfirm.disabled = tokenInput.value.trim().length === 0;
+      settingsConf.disabled = dsKeyInput.value.trim().length === 0;
     }
 
     function onKey(e) {
-      if (e.key === 'Enter' && !tokenConfirm.disabled) onConfirm();
+      if (e.key === 'Enter' && !settingsConf.disabled) onConfirm();
       if (e.key === 'Escape') onCancel();
     }
 
     function cleanup() {
-      tokenConfirm.removeEventListener('click', onConfirm);
-      tokenCancel.removeEventListener('click', onCancel);
-      tokenInput.removeEventListener('input', onInput);
-      tokenInput.removeEventListener('keydown', onKey);
+      settingsConf.removeEventListener('click', onConfirm);
+      settingsCanc.removeEventListener('click', onCancel);
+      dsKeyInput.removeEventListener('input', onInput);
+      dsKeyInput.removeEventListener('keydown', onKey);
     }
 
-    tokenConfirm.addEventListener('click', onConfirm);
-    tokenCancel.addEventListener('click', onCancel);
-    tokenInput.addEventListener('input', onInput);
-    tokenInput.addEventListener('keydown', onKey);
+    settingsConf.addEventListener('click', onConfirm);
+    settingsCanc.addEventListener('click', onCancel);
+    dsKeyInput.addEventListener('input', onInput);
+    dsKeyInput.addEventListener('keydown', onKey);
   }
 
-  // ====== 触发 GitHub Actions 刷新 ======
+  // ====== 调用 DeepSeek API 即时生成 ======
 
-  function triggerUpdate(token) {
-    if (!token) return;
-
+  function generateViaDeepSeek(dsKey) {
     fabBtn.classList.add('spinning');
+    showToast('🤖 正在生成新概念...');
 
+    var seed = Math.floor(Math.random() * 99999) + 1;
+
+    var prompt = '你是一个知识卡片生成器。请生成以下 JSON，不要包含任何其他文字：\n\n' +
+      '{"ai_concepts": [{"name": "概念名", "explanation": "一句话解释（20字以内）"}, ...], ' +
+      '"programming_concepts": [{"name": "概念名", "explanation": "一句话解释（20字以内）"}, ...], ' +
+      '"finance_concepts": [{"name": "概念名", "explanation": "一句话解释（20字以内）"}, ...]}\n\n' +
+      '严格要求：\n' +
+      '- 每个分类恰好 3 个概念，共 9 个\n' +
+      '- 种子 ID: ' + seed + '（根据此种子选择不同概念集合）\n' +
+      '- 必须选择与之前不同的概念组合，不要重复常见的概念\n' +
+      '- name 用中文，explanation 用中文且不超过 20 字\n' +
+      '- 每个分类的概念要跨领域、有代表性\n' +
+      '- ai: 选 AI 领域有深度的概念\n' +
+      '- programming: 选计算机核心原理\n' +
+      '- finance: 选经济学/金融学核心概念';
+
+    fetch('https://api.deepseek.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + dsKey
+      },
+      body: JSON.stringify({
+        model: 'deepseek-v4-flash',
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 1.3
+      })
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('API 错误 (' + res.status + ')');
+      return res.json();
+    })
+    .then(function (data) {
+      var raw = data.choices[0].message.content.trim();
+      if (raw.startsWith('```')) {
+        raw = raw.split('\n', 1)[1].split('\n').slice(0, -1).join('\n').replace(/```$/, '').trim();
+        // simpler approach
+        raw = raw.replace(/^```[a-z]*\n?/i, '').replace(/```\s*$/, '').trim();
+      }
+      var concepts = JSON.parse(raw);
+
+      // 校验
+      if (!concepts.ai_concepts || !concepts.programming_concepts || !concepts.finance_concepts) {
+        throw new Error('返回数据格式不完整');
+      }
+
+      // 立即渲染新内容
+      render(concepts);
+
+      // 缓存到 localStorage，下次打开直接显示
+      localStorage.setItem('cached_concepts', JSON.stringify(concepts));
+      localStorage.setItem('cached_time', Date.now());
+
+      fabBtn.classList.remove('spinning');
+      showToast('✅ 概念已更新');
+
+      // 后台触发 GitHub 持久化
+      var ghToken = getGitHubToken();
+      if (ghToken) {
+        triggerGitHubUpdate(ghToken);
+      }
+    })
+    .catch(function (err) {
+      fabBtn.classList.remove('spinning');
+      showToast('❌ ' + err.message, 'error');
+      // 如果 API 调用失败（可能是 CORS），回退到 GitHub 工作流
+      var ghToken = getGitHubToken();
+      if (ghToken) {
+        showToast('⏳ 回退到 GitHub 工作流...');
+        triggerGitHubUpdate(ghToken);
+      }
+    });
+  }
+
+  // ====== 触发 GitHub Actions（后台持久化）======
+
+  function triggerGitHubUpdate(token) {
     fetch('https://api.github.com/repos/a623829/concepts-page/actions/workflows/update_data.yml/dispatches', {
       method: 'POST',
       headers: {
@@ -764,79 +868,12 @@ body {
     })
     .then(function (res) {
       if (res.status === 204) {
-        showToast('✅ 已触发更新，等待数据刷新');
-        // 轮询等待新数据
-        pollForUpdate(token);
+        showToast('📤 已提交持久化保存');
       } else if (res.status === 401 || res.status === 403) {
-        showToast('❌ 令牌无效或权限不足', 'error');
-        fabBtn.classList.remove('spinning');
-        // 移除无效 token，弹出重新输入
         localStorage.removeItem('gh_token');
-      } else {
-        showToast('❌ 触发失败 (' + res.status + ')', 'error');
-        fabBtn.classList.remove('spinning');
       }
     })
-    .catch(function () {
-      showToast('❌ 网络错误，请检查连接', 'error');
-      fabBtn.classList.remove('spinning');
-    });
-  }
-
-  // ====== 轮询等待新数据 ======
-
-  function pollForUpdate(token) {
-    // 先记下当前数据指纹
-    var currentHash = null;
-
-    fetch('concepts.json?t=' + Date.now())
-      .then(function (r) { return r.json(); })
-      .then(function (d) {
-        currentHash = JSON.stringify(d);
-        return poll();
-      })
-      .catch(function () {
-        // 首次获取失败也继续轮询
-        currentHash = 'none';
-        poll();
-      });
-
-    function poll() {
-      var attempts = 0;
-      var maxAttempts = 30;
-
-      function check() {
-        attempts++;
-        fetch('concepts.json?t=' + Date.now())
-          .then(function (r) { return r.json(); })
-          .then(function (d) {
-            var h = JSON.stringify(d);
-            if (h !== currentHash) {
-              // 数据已更新！
-              showToast('✅ 数据已更新');
-              fabBtn.classList.remove('spinning');
-              // 重新渲染页面
-              render(d);
-              return;
-            }
-            if (attempts < maxAttempts) {
-              setTimeout(check, 3000);
-            } else {
-              showToast('⏳ 更新已触发，稍后刷新页面查看');
-              fabBtn.classList.remove('spinning');
-            }
-          })
-          .catch(function () {
-            if (attempts < maxAttempts) {
-              setTimeout(check, 3000);
-            } else {
-              fabBtn.classList.remove('spinning');
-            }
-          });
-      }
-
-      setTimeout(check, 5000);
-    }
+    .catch(function () {});
   }
 
   // ====== FAB 点击处理 ======
@@ -844,15 +881,36 @@ body {
   fabBtn.addEventListener('click', function () {
     if (fabBtn.classList.contains('spinning')) return;
 
-    var token = getToken();
-    if (token) {
-      triggerUpdate(token);
+    var dsKey = getDeepSeekKey();
+    if (dsKey) {
+      generateViaDeepSeek(dsKey);
     } else {
-      showTokenModal(function (newToken) {
-        if (newToken) triggerUpdate(newToken);
+      openSettings(function (saved) {
+        if (saved) {
+          var key = getDeepSeekKey();
+          if (key) generateViaDeepSeek(key);
+        }
       });
     }
   });
+
+  // 长按 FAB 打开设置
+  var pressTimer = null;
+  fabBtn.addEventListener('touchstart', function (e) {
+    pressTimer = setTimeout(function () {
+      e.preventDefault();
+      openSettings(function () {});
+    }, 600);
+  }, { passive: false });
+  fabBtn.addEventListener('touchend', function () { clearTimeout(pressTimer); });
+  fabBtn.addEventListener('touchmove', function () { clearTimeout(pressTimer); });
+  fabBtn.addEventListener('mousedown', function () {
+    pressTimer = setTimeout(function () {
+      openSettings(function () {});
+    }, 600);
+  });
+  fabBtn.addEventListener('mouseup', function () { clearTimeout(pressTimer); });
+  fabBtn.addEventListener('mouseleave', function () { clearTimeout(pressTimer); });
 
   // ====== 下拉刷新（移动端）======
 
@@ -886,11 +944,10 @@ body {
       }
     }, { passive: true });
 
-    document.addEventListener('touchend', function (e) {
+    document.addEventListener('touchend', function () {
       if (!pulling) return;
       pulling = false;
       if (moved >= threshold) {
-        // 触发刷新
         pullInd.classList.add('loading');
         pullText.textContent = '加载中...';
         setTimeout(function () {
@@ -907,32 +964,43 @@ body {
     }, { passive: true });
   })();
 
-  // ====== 平滑显示加载完成 ======
-
-  function showContent() {
-    contentEl.style.opacity = '0';
-    contentEl.style.transition = 'opacity 0.3s';
-    // 强制回流后再设置 opacity
-    contentEl.offsetHeight;
-    contentEl.style.opacity = '1';
-  }
-
   // ====== 数据加载 & 渲染 ======
 
-  function loadAndRender() {
+  function loadData() {
+    // 优先用缓存
+    var cached = localStorage.getItem('cached_concepts');
+    if (cached) {
+      try {
+        var d = JSON.parse(cached);
+        if (d.ai_concepts && d.programming_concepts && d.finance_concepts) {
+          render(d);
+          return;
+        }
+      } catch (e) {}
+    }
+
+    // 从远程加载
     fetch('concepts.json?t=' + Date.now())
       .then(function (response) {
-        if (!response.ok) throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+        if (!response.ok) throw new Error('HTTP ' + response.status);
         return response.json();
       })
       .then(function (data) {
         if (!data.ai_concepts || !data.programming_concepts || !data.finance_concepts) {
-          throw new Error('数据格式不正确：缺少 ai_concepts、programming_concepts 或 finance_concepts 字段');
+          throw new Error('数据格式不正确');
         }
         render(data);
-        showContent();
+        localStorage.setItem('cached_concepts', JSON.stringify(data));
+        localStorage.setItem('cached_time', Date.now());
       })
       .catch(function (err) {
+        // 如果缓存有数据但远程失败，尝试用缓存
+        if (cached) {
+          try {
+            render(JSON.parse(cached));
+            return;
+          } catch (e) {}
+        }
         renderError(err);
       });
   }
@@ -1001,7 +1069,7 @@ body {
     return div.innerHTML;
   }
 
-  loadAndRender();
+  loadData();
 })();
 </script>
 

@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "机器学习",
-      "explanation": "让计算机从数据中自动学习规律和模式，无需显式编程。"
+      "name": "注意力机制",
+      "explanation": "让模型聚焦重要信息的机制"
     },
     {
-      "name": "深度学习",
-      "explanation": "使用多层神经网络模拟人脑，学习复杂数据的层次特征。"
+      "name": "图神经网络",
+      "explanation": "处理图结构数据的深度学习模型"
     },
     {
-      "name": "自然语言处理",
-      "explanation": "使计算机能理解、生成和处理人类语言的技术。"
+      "name": "生成对抗网络",
+      "explanation": "生成器与判别器对抗训练的方法"
     }
   ],
   "programming_concepts": [
     {
-      "name": "面向对象编程",
-      "explanation": "将数据和操作封装成对象，通过继承和多态组织代码。"
+      "name": "冯·诺依曼架构",
+      "explanation": "存储程序指令和数据的计算机设计"
     },
     {
-      "name": "递归",
-      "explanation": "函数直接或间接调用自身，解决子问题相同的问题。"
+      "name": "编译原理",
+      "explanation": "将高级语言转换为机器代码的理论"
     },
     {
-      "name": "算法复杂度",
-      "explanation": "衡量算法效率的指标，通常指时间与空间随输入规模的增长。"
+      "name": "虚拟内存",
+      "explanation": "物理内存和磁盘空间抽象映射技术"
     }
   ],
   "finance_concepts": [
     {
-      "name": "复利",
-      "explanation": "利息加入本金再计息，实现财富指数增长的核心机制。"
+      "name": "货币乘数",
+      "explanation": "基础货币创造多倍存款的系数"
     },
     {
-      "name": "风险分散",
-      "explanation": "通过投资不同资产降低整体风险，避免单一损失。"
+      "name": "菲利普斯曲线",
+      "explanation": "失业与通胀之间短期负相关关系"
     },
     {
-      "name": "时间价值",
-      "explanation": "当前资金比未来同等资金更有价值，因可投资增值。"
+      "name": "有效市场假说",
+      "explanation": "资产价格反映所有可获信息"
     }
   ]
 }
