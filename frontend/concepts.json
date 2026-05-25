@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "图神经网络",
-      "explanation": "处理图结构数据的神经网络模型"
+      "name": "对比学习",
+      "explanation": "通过正负样本对学习特征表示"
     },
     {
-      "name": "对抗生成网络",
-      "explanation": "生成器和判别器博弈学习"
+      "name": "神经符号系统",
+      "explanation": "融合神经网络与符号推理的框架"
     },
     {
-      "name": "自监督学习",
-      "explanation": "无需人工标注的表示学习"
+      "name": "元学习",
+      "explanation": "学会如何学习，快速适应新任务"
     }
   ],
   "programming_concepts": [
     {
-      "name": "协程",
-      "explanation": "用户态轻量级线程调度"
+      "name": "引用计数",
+      "explanation": "通过计数器管理对象生命周期"
     },
     {
-      "name": "闭包",
-      "explanation": "函数绑定外部变量的环境"
+      "name": "虚函数表",
+      "explanation": "实现动态多态的机制"
     },
     {
-      "name": "反射",
-      "explanation": "运行时检查并修改自身结构"
+      "name": "内存屏障",
+      "explanation": "控制指令重排序的内存同步指令"
     }
   ],
   "finance_concepts": [
     {
+      "name": "流动性陷阱",
+      "explanation": "利率极低时货币政策失效状态"
+    },
+    {
       "name": "有效市场假说",
-      "explanation": "价格反映所有可用信息"
+      "explanation": "股价反映所有已知信息"
     },
     {
-      "name": "货币乘数",
-      "explanation": "基础货币创造存款的倍数"
-    },
-    {
-      "name": "菲利普斯曲线",
-      "explanation": "失业与通胀间的反向关系"
+      "name": "套利定价理论",
+      "explanation": "多因子模型解释资产收益"
     }
   ]
 }
