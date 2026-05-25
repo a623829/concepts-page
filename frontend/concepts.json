@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "注意力机制",
-      "explanation": "让模型聚焦重要信息的机制"
+      "name": "神经符号集成",
+      "explanation": "结合神经网络与符号推理的方法"
     },
     {
-      "name": "图神经网络",
-      "explanation": "处理图结构数据的深度学习模型"
+      "name": "扩散模型",
+      "explanation": "通过逐步去噪生成数据的生成模型"
     },
     {
-      "name": "生成对抗网络",
-      "explanation": "生成器与判别器对抗训练的方法"
+      "name": "元学习",
+      "explanation": "学习如何学习，快速适应新任务"
     }
   ],
   "programming_concepts": [
     {
-      "name": "冯·诺依曼架构",
-      "explanation": "存储程序指令和数据的计算机设计"
+      "name": "引用透明性",
+      "explanation": "函数调用可被其结果替换而不变"
     },
     {
-      "name": "编译原理",
-      "explanation": "将高级语言转换为机器代码的理论"
+      "name": "柯里化",
+      "explanation": "将多参数函数转为单参数链式调用"
     },
     {
-      "name": "虚拟内存",
-      "explanation": "物理内存和磁盘空间抽象映射技术"
+      "name": "代数效应",
+      "explanation": "分离计算效果与处理的编程抽象"
     }
   ],
   "finance_concepts": [
     {
-      "name": "货币乘数",
-      "explanation": "基础货币创造多倍存款的系数"
-    },
-    {
-      "name": "菲利普斯曲线",
-      "explanation": "失业与通胀之间短期负相关关系"
-    },
-    {
       "name": "有效市场假说",
-      "explanation": "资产价格反映所有可获信息"
+      "explanation": "价格反映所有可用信息"
+    },
+    {
+      "name": "凯恩斯选美理论",
+      "explanation": "投资如选美，预测他人偏好"
+    },
+    {
+      "name": "莫迪利亚尼-米勒定理",
+      "explanation": "资本结构不影响企业价值"
     }
   ]
 }
