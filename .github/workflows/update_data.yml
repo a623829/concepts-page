@@ -2,9 +2,11 @@ name: 每日自动更新数据
 
 on:
   schedule:
-    # UTC 时间 0 点 = 北京时间早上 8 点
     - cron: '0 0 * * *'
-  workflow_dispatch:  # 支持手动触发
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   update:
@@ -19,23 +21,21 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: 安装依赖
-        run: pip install openai
+      - run: pip install openai
 
-      - name: 运行数据生成脚本
-        run: python data_updater.py
+      - run: python data_updater.py
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
-      - name: 提交并推送变更（如有）
+      - name: 提交并推送
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet; then
-            echo "无数据变更，跳过提交"
+          git add frontend/concepts.json
+          if git diff --cached --quiet; then
+            echo "无变更，跳过"
           else
-            git pull --rebase --autostash origin main
-            git add frontend/concepts.json
             git commit -m "data: 每日自动更新 concepts.json"
+            git pull --rebase origin main
             git push
           fi
