@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经网络",
-      "explanation": "模拟人脑神经元结构的计算模型，用于模式识别和预测。"
+      "name": "机器学习",
+      "explanation": "让计算机从数据中自动学习规律和模式的方法。"
     },
     {
       "name": "深度学习",
-      "explanation": "多层神经网络的学习方法，能自动提取复杂特征。"
+      "explanation": "使用多层神经网络模拟人脑处理复杂数据的技术。"
     },
     {
-      "name": "强化学习",
-      "explanation": "智能体通过与环境交互获得奖励来学习最优策略。"
+      "name": "神经网络",
+      "explanation": "模仿生物神经元连接的计算模型，用于模式识别。"
     }
   ],
   "programming_concepts": [
     {
       "name": "面向对象",
-      "explanation": "将数据和方法封装成对象，通过继承和多态组织代码。"
+      "explanation": "以对象为单位封装数据和方法进行编程的范式。"
     },
     {
-      "name": "API",
-      "explanation": "应用程序接口，定义软件组件之间交互的协议。"
+      "name": "递归",
+      "explanation": "函数调用自身来解决子问题的编程技巧。"
     },
     {
-      "name": "数据库",
-      "explanation": "结构化存储和管理数据的系统，支持高效查询与更新。"
+      "name": "算法",
+      "explanation": "解决特定问题的明确步骤和计算方法的集合。"
     }
   ],
   "finance_concepts": [
     {
       "name": "复利",
-      "explanation": "利息加入本金再计息，产生利滚利的效应。"
+      "explanation": "利息再生利息，使本金指数增长的计息方式。"
     },
     {
-      "name": "股票",
-      "explanation": "公司所有权凭证，持有者享有分红和投票权。"
+      "name": "通货膨胀",
+      "explanation": "货币购买力下降，商品和服务价格普遍上涨的现象。"
     },
     {
-      "name": "风险对冲",
-      "explanation": "通过反向交易或衍生品降低投资组合的价格波动风险。"
+      "name": "风险分散",
+      "explanation": "通过投资不同资产降低整体投资风险的方法。"
     }
   ]
 }
