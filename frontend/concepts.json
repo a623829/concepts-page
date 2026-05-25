@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "对比学习",
-      "explanation": "通过正负样本对学习特征表示"
+      "name": "自注意力机制",
+      "explanation": "计算序列中元素间相关性权重"
     },
     {
-      "name": "神经符号系统",
-      "explanation": "融合神经网络与符号推理的框架"
+      "name": "扩散模型",
+      "explanation": "通过逐步去噪生成数据"
     },
     {
-      "name": "元学习",
-      "explanation": "学会如何学习，快速适应新任务"
+      "name": "残差连接",
+      "explanation": "跨层跳跃缓解梯度消失"
     }
   ],
   "programming_concepts": [
     {
       "name": "引用计数",
-      "explanation": "通过计数器管理对象生命周期"
+      "explanation": "通过计数管理对象生命周期"
     },
     {
-      "name": "虚函数表",
-      "explanation": "实现动态多态的机制"
+      "name": "虚拟内存",
+      "explanation": "映射逻辑地址到物理内存"
     },
     {
-      "name": "内存屏障",
-      "explanation": "控制指令重排序的内存同步指令"
+      "name": "上下文切换",
+      "explanation": "保存恢复进程执行状态"
     }
   ],
   "finance_concepts": [
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效状态"
+      "name": "菲利普斯曲线",
+      "explanation": "通胀与失业短期负相关"
+    },
+    {
+      "name": "量化宽松",
+      "explanation": "央行购买资产增加流动性"
     },
     {
       "name": "有效市场假说",
-      "explanation": "股价反映所有已知信息"
-    },
-    {
-      "name": "套利定价理论",
-      "explanation": "多因子模型解释资产收益"
+      "explanation": "价格反映所有已知信息"
     }
   ]
 }
