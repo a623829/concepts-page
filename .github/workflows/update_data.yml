@@ -24,6 +24,18 @@ jobs:
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 
+      - name: 测试 PAT_TOKEN 是否有效
+        run: |
+          response=$(curl -s -w "%{http_code}" -o /tmp/gh_user.json \
+            -H "Authorization: token ${{ secrets.PAT_TOKEN }}" \
+            https://api.github.com/user)
+          if [ "$response" = "200" ]; then
+            echo "PAT_TOKEN 有效，用户: $(grep -o '"login": "[^"]*"' /tmp/gh_user.json)"
+          else
+            echo "PAT_TOKEN 无效，HTTP 状态码: $response"
+            cat /tmp/gh_user.json
+          fi
+
       - name: 提交并推送
         run: |
           git config user.name "github-actions[bot]"
