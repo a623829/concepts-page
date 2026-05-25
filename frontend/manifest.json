@@ -1,0 +1,12 @@
+{
+  "name": "核心概念卡片",
+  "short_name": "核心概念",
+  "description": "每日更新的核心概念知识卡片 — AI、编程、金融",
+  "start_url": "/concepts-page/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f5f7",
+  "theme_color": "#f5f5f7",
+  "categories": ["education", "reference"],
+  "lang": "zh-CN"
+}

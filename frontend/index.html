@@ -2,7 +2,13 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1c1e" media="(prefers-color-scheme: dark)">
+<link rel="manifest" href="manifest.json">
 <title>核心概念卡片</title>
 <style>
 /* ====== CSS 变量：浅色/深色模式 ====== */
@@ -16,9 +22,17 @@
   --tag-bg:    #f0f0f5;
   --tag-text:  #0071e3;
   --accent:    #0071e3;
+  --accent-hover: #0066cc;
   --divider:   #e5e5ea;
   --error-bg:  #fff0f0;
   --error-text:#c0392b;
+  --toast-bg:  rgba(0,0,0,0.82);
+  --toast-text:#fff;
+  --overlay-bg:rgba(0,0,0,0.4);
+  --fab-shadow: 0 4px 20px rgba(0,113,227,0.35);
+  --safe-bottom: env(safe-area-inset-bottom, 16px);
+  --safe-left:  env(safe-area-inset-left, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
 }
 
 [data-theme="dark"] {
@@ -31,13 +45,23 @@
   --tag-bg:    #3a3a3c;
   --tag-text:  #64d2ff;
   --accent:    #64d2ff;
+  --accent-hover: #4dc4f0;
   --divider:   #3a3a3c;
   --error-bg:  #3a1a1a;
   --error-text:#ff6b6b;
+  --toast-bg:  rgba(255,255,255,0.88);
+  --toast-text:#1c1c1e;
+  --overlay-bg:rgba(0,0,0,0.55);
+  --fab-shadow: 0 4px 20px rgba(100,210,255,0.3);
 }
 
 /* ====== 基础重置 ====== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
@@ -47,6 +71,9 @@ body {
   line-height: 1.6;
   transition: background 0.3s, color 0.3s;
   min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ====== 容器 ====== */
@@ -69,6 +96,7 @@ body {
   max-width: 700px;
   margin: 0 auto;
   padding: 24px;
+  padding-bottom: 100px;
 }
 
 /* ====== 深色/浅色切换按钮 ====== */
@@ -85,13 +113,23 @@ body {
   justify-content: center;
   transition: background 0.3s, border-color 0.3s, transform 0.2s;
   line-height: 1;
+  -webkit-user-select: none;
+  user-select: none;
 }
 .theme-toggle:hover { transform: scale(1.08); }
-.theme-toggle:active { transform: scale(0.95); }
+.theme-toggle:active { transform: scale(0.92); }
 
 /* ====== 分区标题 ====== */
 .section {
   margin-bottom: 32px;
+  animation: fadeUp 0.4s ease both;
+}
+.section:nth-child(2) { animation-delay: 0.08s; }
+.section:nth-child(3) { animation-delay: 0.16s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .section-title {
@@ -123,6 +161,8 @@ body {
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 /* 卡片左侧装饰色条 */
@@ -142,6 +182,10 @@ body {
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.card:active {
+  transform: translateY(0);
 }
 
 .card:hover::before {
@@ -232,20 +276,309 @@ body {
 .footer {
   text-align: center;
   padding: 16px 24px 40px;
+  padding-bottom: calc(40px + var(--safe-bottom));
   font-size: 0.78rem;
   color: var(--text-sub);
   opacity: 0.6;
 }
 
+/* ====== 悬浮刷新按钮（FAB）====== */
+.fab {
+  position: fixed;
+  bottom: calc(24px + var(--safe-bottom));
+  right: calc(24px + var(--safe-right));
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--fab-shadow);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background 0.25s,
+              opacity 0.3s;
+  z-index: 100;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.fab:hover {
+  transform: scale(1.08);
+  background: var(--accent-hover);
+}
+
+.fab:active {
+  transform: scale(0.92);
+}
+
+.fab svg {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  transition: transform 0.3s;
+}
+
+.fab.spinning svg {
+  animation: fabSpin 0.8s linear infinite;
+}
+
+@keyframes fabSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ====== Toast 通知 ====== */
+.toast-container {
+  position: fixed;
+  bottom: calc(96px + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast {
+  background: var(--toast-bg);
+  color: var(--toast-text);
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  animation: toastIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  pointer-events: auto;
+  max-width: 320px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.toast.out {
+  animation: toastOut 0.3s ease both;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toastOut {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(-10px) scale(0.9); }
+}
+
+/* ====== Token 弹窗 ====== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  animation: overlayIn 0.25s ease both;
+  padding: 24px;
+}
+
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal {
+  background: var(--card-bg);
+  border-radius: 28px;
+  padding: 32px 28px 24px;
+  max-width: 380px;
+  width: 100%;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+  animation: modalIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(30px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.modal h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.modal p {
+  font-size: 0.88rem;
+  color: var(--text-sub);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.modal input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  font-size: 0.92rem;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: inherit;
+  margin-bottom: 16px;
+}
+
+.modal input:focus {
+  border-color: var(--accent);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 14px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, opacity 0.2s;
+  font-family: inherit;
+}
+
+.modal-actions button:active {
+  transform: scale(0.96);
+}
+
+.btn-cancel {
+  background: var(--tag-bg);
+  color: var(--text);
+}
+
+.btn-confirm {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-confirm:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ====== 下拉刷新指示器 ====== */
+.pull-indicator {
+  position: fixed;
+  top: -60px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  color: var(--text-sub);
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: top 0.3s;
+  pointer-events: none;
+}
+
+.pull-indicator.visible {
+  top: 0;
+}
+
+.pull-indicator .arrow {
+  display: inline-block;
+  margin-right: 8px;
+  transition: transform 0.2s;
+  font-size: 1.1rem;
+}
+
+.pull-indicator .arrow.flip {
+  transform: rotate(180deg);
+}
+
+.pull-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: 10px;
+  display: none;
+}
+
+.pull-indicator.loading .pull-spinner {
+  display: inline-block;
+}
+
+.pull-indicator.loading .arrow {
+  display: none;
+}
+
 /* ====== 响应式 ====== */
 @media (max-width: 640px) {
   .header h1 { font-size: 1.25rem; }
-  .container { padding: 16px; }
+  .header { padding: 28px 18px 0; }
+  .container { padding: 18px; padding-bottom: 88px; }
   .card {
     padding: 24px 20px;
     border-radius: 22px;
     gap: 16px;
   }
+  .fab {
+    bottom: calc(20px + var(--safe-bottom));
+    right: calc(20px + var(--safe-right));
+    width: 52px;
+    height: 52px;
+  }
+  .fab svg { width: 24px; height: 24px; }
+  .modal { padding: 28px 20px 20px; }
+}
+
+@media (max-width: 400px) {
+  .card { padding: 20px 16px; gap: 12px; }
+  .card-index { width: 32px; height: 32px; font-size: 0.75rem; }
+  .card-name { font-size: 1rem; }
+  .card-explanation { font-size: 0.84rem; }
+}
+
+/* ====== 安全区域适配（刘海屏）====== */
+@supports (padding: max(0px)) {
+  .fab {
+    bottom: max(24px, env(safe-area-inset-bottom, 24px));
+    right: max(24px, env(safe-area-inset-right, 24px));
+  }
+  .footer {
+    padding-bottom: max(40px, env(safe-area-inset-bottom, 40px));
+  }
+}
+
+/* ====== 暗色模式滚动条美化 ====== */
+[data-theme="dark"]::-webkit-scrollbar {
+  width: 6px;
+}
+[data-theme="dark"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+[data-theme="dark"]::-webkit-scrollbar-thumb {
+  background: #3a3a3c;
+  border-radius: 3px;
 }
 </style>
 </head>
@@ -257,11 +590,39 @@ body {
   <button class="theme-toggle" id="themeToggle" aria-label="切换深色/浅色模式" title="切换深色/浅色模式">☀</button>
 </div>
 
+<!-- 下拉刷新指示器 -->
+<div class="pull-indicator" id="pullIndicator">
+  <span class="arrow" id="pullArrow">↓</span>
+  <span class="pull-spinner"></span>
+  <span id="pullText">下拉刷新</span>
+</div>
+
 <!-- 主内容区 -->
 <div class="container" id="content">
   <div class="state-message">
     <div class="spinner"></div>
     <p>正在加载数据...</p>
+  </div>
+</div>
+
+<!-- 悬浮刷新按钮 -->
+<button class="fab" id="fabBtn" aria-label="刷新数据" title="触发数据更新">
+  <svg viewBox="0 0 24 24"><path d="M17.65 6.35A7.96 7.96 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+</button>
+
+<!-- Toast 容器 -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Token 弹窗（初始隐藏） -->
+<div class="modal-overlay" id="tokenModal" style="display:none;">
+  <div class="modal">
+    <h2>设置访问令牌</h2>
+    <p>需要 GitHub 令牌才能触发数据更新。<br>令牌仅保存在本地浏览器中。</p>
+    <input type="password" id="tokenInput" placeholder="输入 GitHub Personal Access Token" autocomplete="off">
+    <div class="modal-actions">
+      <button class="btn-cancel" id="tokenCancel">取消</button>
+      <button class="btn-confirm" id="tokenConfirm" disabled>确认</button>
+    </div>
   </div>
 </div>
 
@@ -272,9 +633,19 @@ body {
 (function () {
   'use strict';
 
-  var contentEl = document.getElementById('content');
-  var toggleBtn = document.getElementById('themeToggle');
-  var htmlEl    = document.documentElement;
+  // DOM 元素
+  var contentEl   = document.getElementById('content');
+  var toggleBtn   = document.getElementById('themeToggle');
+  var htmlEl      = document.documentElement;
+  var fabBtn      = document.getElementById('fabBtn');
+  var toastCtn    = document.getElementById('toastContainer');
+  var tokenModal  = document.getElementById('tokenModal');
+  var tokenInput  = document.getElementById('tokenInput');
+  var tokenConfirm= document.getElementById('tokenConfirm');
+  var tokenCancel = document.getElementById('tokenCancel');
+  var pullInd     = document.getElementById('pullIndicator');
+  var pullArrow   = document.getElementById('pullArrow');
+  var pullText    = document.getElementById('pullText');
 
   // ====== 深色/浅色模式 ======
 
@@ -289,6 +660,11 @@ body {
     htmlEl.setAttribute('data-theme', theme);
     toggleBtn.textContent = theme === 'dark' ? '☽' : '☀';
     localStorage.setItem('theme', theme);
+    // 更新 theme-color meta
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.content = theme === 'dark' ? '#1c1c1e' : '#f5f5f7';
+    }
   }
 
   function toggleTheme() {
@@ -303,20 +679,262 @@ body {
     if (!localStorage.getItem('theme')) applyTheme(e.matches ? 'dark' : 'light');
   });
 
+  // ====== Toast 通知系统 ======
+
+  function showToast(msg, type) {
+    var el = document.createElement('div');
+    el.className = 'toast' + (type === 'error' ? ' toast-error' : '');
+    el.textContent = msg;
+    toastCtn.appendChild(el);
+
+    setTimeout(function () {
+      el.classList.add('out');
+      setTimeout(function () { el.remove(); }, 300);
+    }, 2500);
+  }
+
+  // ====== Token 管理 ======
+
+  function getToken() {
+    return localStorage.getItem('gh_token') || '';
+  }
+
+  function setToken(val) {
+    localStorage.setItem('gh_token', val);
+  }
+
+  function showTokenModal(callback) {
+    tokenModal.style.display = 'flex';
+    tokenInput.value = getToken();
+    tokenConfirm.disabled = tokenInput.value.trim().length === 0;
+    tokenInput.focus();
+
+    function onConfirm() {
+      var val = tokenInput.value.trim();
+      if (!val) return;
+      setToken(val);
+      tokenModal.style.display = 'none';
+      cleanup();
+      callback(val);
+    }
+
+    function onCancel() {
+      tokenModal.style.display = 'none';
+      cleanup();
+      callback(null);
+    }
+
+    function onInput() {
+      tokenConfirm.disabled = tokenInput.value.trim().length === 0;
+    }
+
+    function onKey(e) {
+      if (e.key === 'Enter' && !tokenConfirm.disabled) onConfirm();
+      if (e.key === 'Escape') onCancel();
+    }
+
+    function cleanup() {
+      tokenConfirm.removeEventListener('click', onConfirm);
+      tokenCancel.removeEventListener('click', onCancel);
+      tokenInput.removeEventListener('input', onInput);
+      tokenInput.removeEventListener('keydown', onKey);
+    }
+
+    tokenConfirm.addEventListener('click', onConfirm);
+    tokenCancel.addEventListener('click', onCancel);
+    tokenInput.addEventListener('input', onInput);
+    tokenInput.addEventListener('keydown', onKey);
+  }
+
+  // ====== 触发 GitHub Actions 刷新 ======
+
+  function triggerUpdate(token) {
+    if (!token) return;
+
+    fabBtn.classList.add('spinning');
+
+    fetch('https://api.github.com/repos/a623829/concepts-page/actions/workflows/update_data.yml/dispatches', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'token ' + token,
+        'Accept': 'application/vnd.github+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ ref: 'main' })
+    })
+    .then(function (res) {
+      if (res.status === 204) {
+        showToast('✅ 已触发更新，等待数据刷新');
+        // 轮询等待新数据
+        pollForUpdate(token);
+      } else if (res.status === 401 || res.status === 403) {
+        showToast('❌ 令牌无效或权限不足', 'error');
+        fabBtn.classList.remove('spinning');
+        // 移除无效 token，弹出重新输入
+        localStorage.removeItem('gh_token');
+      } else {
+        showToast('❌ 触发失败 (' + res.status + ')', 'error');
+        fabBtn.classList.remove('spinning');
+      }
+    })
+    .catch(function () {
+      showToast('❌ 网络错误，请检查连接', 'error');
+      fabBtn.classList.remove('spinning');
+    });
+  }
+
+  // ====== 轮询等待新数据 ======
+
+  function pollForUpdate(token) {
+    // 先记下当前数据指纹
+    var currentHash = null;
+
+    fetch('concepts.json?t=' + Date.now())
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        currentHash = JSON.stringify(d);
+        return poll();
+      })
+      .catch(function () {
+        // 首次获取失败也继续轮询
+        currentHash = 'none';
+        poll();
+      });
+
+    function poll() {
+      var attempts = 0;
+      var maxAttempts = 30;
+
+      function check() {
+        attempts++;
+        fetch('concepts.json?t=' + Date.now())
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            var h = JSON.stringify(d);
+            if (h !== currentHash) {
+              // 数据已更新！
+              showToast('✅ 数据已更新');
+              fabBtn.classList.remove('spinning');
+              // 重新渲染页面
+              render(d);
+              return;
+            }
+            if (attempts < maxAttempts) {
+              setTimeout(check, 3000);
+            } else {
+              showToast('⏳ 更新已触发，稍后刷新页面查看');
+              fabBtn.classList.remove('spinning');
+            }
+          })
+          .catch(function () {
+            if (attempts < maxAttempts) {
+              setTimeout(check, 3000);
+            } else {
+              fabBtn.classList.remove('spinning');
+            }
+          });
+      }
+
+      setTimeout(check, 5000);
+    }
+  }
+
+  // ====== FAB 点击处理 ======
+
+  fabBtn.addEventListener('click', function () {
+    if (fabBtn.classList.contains('spinning')) return;
+
+    var token = getToken();
+    if (token) {
+      triggerUpdate(token);
+    } else {
+      showTokenModal(function (newToken) {
+        if (newToken) triggerUpdate(newToken);
+      });
+    }
+  });
+
+  // ====== 下拉刷新（移动端）======
+
+  (function () {
+    var startY = 0;
+    var pulling = false;
+    var threshold = 80;
+    var moved = 0;
+
+    document.addEventListener('touchstart', function (e) {
+      if (window.scrollY > 0) return;
+      var t = e.touches[0];
+      startY = t.clientY;
+      moved = 0;
+      pulling = true;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!pulling) return;
+      var t = e.touches[0];
+      moved = t.clientY - startY;
+      if (moved < 0) { pulling = false; pullInd.classList.remove('visible'); return; }
+
+      if (moved > 20) {
+        pullInd.classList.add('visible');
+        var progress = Math.min(moved / threshold, 1);
+        pullArrow.style.transform = 'rotate(' + (progress * 180) + 'deg)';
+        pullArrow.className = 'arrow' + (progress >= 1 ? ' flip' : '');
+        pullText.textContent = progress >= 1 ? '松开刷新' : '下拉刷新';
+        pullInd.classList.remove('loading');
+      }
+    }, { passive: true });
+
+    document.addEventListener('touchend', function (e) {
+      if (!pulling) return;
+      pulling = false;
+      if (moved >= threshold) {
+        // 触发刷新
+        pullInd.classList.add('loading');
+        pullText.textContent = '加载中...';
+        setTimeout(function () {
+          pullInd.classList.remove('visible', 'loading');
+          pullArrow.className = 'arrow';
+          pullText.textContent = '下拉刷新';
+          window.location.reload();
+        }, 600);
+      } else {
+        pullInd.classList.remove('visible');
+        pullArrow.className = 'arrow';
+        pullText.textContent = '下拉刷新';
+      }
+    }, { passive: true });
+  })();
+
+  // ====== 平滑显示加载完成 ======
+
+  function showContent() {
+    contentEl.style.opacity = '0';
+    contentEl.style.transition = 'opacity 0.3s';
+    // 强制回流后再设置 opacity
+    contentEl.offsetHeight;
+    contentEl.style.opacity = '1';
+  }
+
   // ====== 数据加载 & 渲染 ======
 
-  async function loadAndRender() {
-    try {
-      var response = await fetch('concepts.json');
-      if (!response.ok) throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-      var data = await response.json();
-      if (!data.ai_concepts || !data.programming_concepts || !data.finance_concepts) {
-        throw new Error('数据格式不正确：缺少 ai_concepts、programming_concepts 或 finance_concepts 字段');
-      }
-      render(data);
-    } catch (err) {
-      renderError(err);
-    }
+  function loadAndRender() {
+    fetch('concepts.json?t=' + Date.now())
+      .then(function (response) {
+        if (!response.ok) throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+        return response.json();
+      })
+      .then(function (data) {
+        if (!data.ai_concepts || !data.programming_concepts || !data.finance_concepts) {
+          throw new Error('数据格式不正确：缺少 ai_concepts、programming_concepts 或 finance_concepts 字段');
+        }
+        render(data);
+        showContent();
+      })
+      .catch(function (err) {
+        renderError(err);
+      });
   }
 
   function render(data) {
