@@ -20,10 +20,13 @@ prompt = """请生成以下 JSON，不要包含任何其他文字：
   ],
   "programming_concepts": [
     {"name": "xxx", "explanation": "一句话解释"}
+  ],
+  "finance_concepts": [
+    {"name": "xxx", "explanation": "一句话解释"}
   ]
 }
 要求：
-- ai_concepts 和 programming_concepts 各 10 个
+- ai_concepts、programming_concepts、finance_concepts 各 3 个
 - name 用中文概念名称
 - explanation 用中文，不超过 50 字
 - 选最有代表性的核心概念"""
@@ -40,8 +43,8 @@ try:
     data = json.loads(content)
 
     # 校验
-    for key in ("ai_concepts", "programming_concepts"):
-        assert len(data.get(key, [])) == 10, f"{key} 数量不对"
+    for key in ("ai_concepts", "programming_concepts", "finance_concepts"):
+        assert len(data.get(key, [])) == 3, f"{key} 数量不对"
         for item in data[key]:
             assert "name" in item and "explanation" in item
 
