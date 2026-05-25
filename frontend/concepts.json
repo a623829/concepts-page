@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经符号集成",
-      "explanation": "结合神经网络与符号推理的方法"
+      "name": "知识蒸馏",
+      "explanation": "大模型压缩为小模型的技术"
     },
     {
-      "name": "扩散模型",
-      "explanation": "通过逐步去噪生成数据的生成模型"
+      "name": "对抗训练",
+      "explanation": "通过对抗样本增强鲁棒性"
     },
     {
-      "name": "元学习",
-      "explanation": "学习如何学习，快速适应新任务"
+      "name": "自监督学习",
+      "explanation": "利用数据自身结构进行训练"
     }
   ],
   "programming_concepts": [
     {
-      "name": "引用透明性",
-      "explanation": "函数调用可被其结果替换而不变"
+      "name": "引用透明",
+      "explanation": "表达式可被其值替换不变"
     },
     {
-      "name": "柯里化",
-      "explanation": "将多参数函数转为单参数链式调用"
+      "name": "惰性求值",
+      "explanation": "延迟计算直到需要结果时"
     },
     {
-      "name": "代数效应",
-      "explanation": "分离计算效果与处理的编程抽象"
+      "name": "协变与逆变",
+      "explanation": "类型参数在继承中的变化方向"
     }
   ],
   "finance_concepts": [
     {
-      "name": "有效市场假说",
-      "explanation": "价格反映所有可用信息"
+      "name": "流动性陷阱",
+      "explanation": "利率极低时货币政策失效"
     },
     {
-      "name": "凯恩斯选美理论",
-      "explanation": "投资如选美，预测他人偏好"
+      "name": "费雪效应",
+      "explanation": "名义利率随通胀预期调整"
     },
     {
-      "name": "莫迪利亚尼-米勒定理",
-      "explanation": "资本结构不影响企业价值"
+      "name": "格雷欣法则",
+      "explanation": "劣币驱逐良币现象"
     }
   ]
 }
