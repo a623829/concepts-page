@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "对抗生成网络",
-      "explanation": "生成器与判别器博弈学习"
+      "name": "元学习",
+      "explanation": "让模型快速适应新任务的学习方法"
     },
     {
-      "name": "迁移学习",
-      "explanation": "将源领域知识迁移到目标域"
+      "name": "自监督学习",
+      "explanation": "无需人工标注，从数据本身学习"
     },
     {
-      "name": "注意力机制",
-      "explanation": "模型动态聚焦重要信息部分"
+      "name": "神经架构搜索",
+      "explanation": "自动设计神经网络结构的方法"
     }
   ],
   "programming_concepts": [
     {
-      "name": "缓存一致性",
-      "explanation": "多核CPU缓存数据同步协议"
-    },
-    {
-      "name": "内存屏障",
-      "explanation": "防止指令重排序的同步指令"
-    },
-    {
       "name": "闭包",
-      "explanation": "函数与其引用环境的组合体"
+      "explanation": "函数记住并访问其外部作用域变量"
+    },
+    {
+      "name": "协程",
+      "explanation": "允许暂停和恢复执行的函数"
+    },
+    {
+      "name": "内存对齐",
+      "explanation": "按特定字节边界存储数据以提高效率"
     }
   ],
   "finance_concepts": [
     {
-      "name": "久期",
-      "explanation": "债券价格对利率变化的敏感度"
+      "name": "流动性陷阱",
+      "explanation": "利率极低时，货币需求无限大"
     },
     {
-      "name": "凸性",
-      "explanation": "衡量久期变化率的二阶指标"
+      "name": "菲利普斯曲线",
+      "explanation": "通胀率与失业率呈反向关系"
     },
     {
-      "name": "有效市场假说",
-      "explanation": "价格反映所有可用信息"
+      "name": "基尼系数",
+      "explanation": "0到1之间，数值越大越不平等"
     }
   ]
 }
