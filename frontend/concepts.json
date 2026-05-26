@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "注意力机制",
-      "explanation": "让模型聚焦重要信息的机制"
+      "name": "自注意力机制",
+      "explanation": "计算序列中元素间相关性权重"
     },
     {
-      "name": "图神经网络",
-      "explanation": "处理图结构数据的深度学习模型"
+      "name": "扩散模型",
+      "explanation": "通过逐步去噪生成数据"
     },
     {
-      "name": "生成对抗网络",
-      "explanation": "生成器与判别器对抗训练的方法"
+      "name": "残差连接",
+      "explanation": "跨层跳跃缓解梯度消失"
     }
   ],
   "programming_concepts": [
     {
-      "name": "冯·诺依曼架构",
-      "explanation": "存储程序指令和数据的计算机设计"
-    },
-    {
-      "name": "编译原理",
-      "explanation": "将高级语言转换为机器代码的理论"
+      "name": "引用计数",
+      "explanation": "通过计数管理对象生命周期"
     },
     {
       "name": "虚拟内存",
-      "explanation": "物理内存和磁盘空间抽象映射技术"
+      "explanation": "映射逻辑地址到物理内存"
+    },
+    {
+      "name": "上下文切换",
+      "explanation": "保存恢复进程执行状态"
     }
   ],
   "finance_concepts": [
     {
-      "name": "货币乘数",
-      "explanation": "基础货币创造多倍存款的系数"
+      "name": "菲利普斯曲线",
+      "explanation": "通胀与失业短期负相关"
     },
     {
-      "name": "菲利普斯曲线",
-      "explanation": "失业与通胀之间短期负相关关系"
+      "name": "量化宽松",
+      "explanation": "央行购买资产增加流动性"
     },
     {
       "name": "有效市场假说",
-      "explanation": "资产价格反映所有可获信息"
+      "explanation": "价格反映所有已知信息"
     }
   ]
 }
