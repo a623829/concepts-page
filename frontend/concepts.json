@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "自注意力机制",
-      "explanation": "计算序列中元素间相关性权重"
+      "name": "对抗生成网络",
+      "explanation": "通过博弈训练生成模型"
     },
     {
-      "name": "扩散模型",
-      "explanation": "通过逐步去噪生成数据"
+      "name": "注意力机制",
+      "explanation": "聚焦输入重要部分"
     },
     {
-      "name": "残差连接",
-      "explanation": "跨层跳跃缓解梯度消失"
+      "name": "策略梯度",
+      "explanation": "直接优化策略参数的方法"
     }
   ],
   "programming_concepts": [
     {
-      "name": "引用计数",
-      "explanation": "通过计数管理对象生命周期"
+      "name": "函数式编程",
+      "explanation": "无副作用纯函数计算"
     },
     {
-      "name": "虚拟内存",
-      "explanation": "映射逻辑地址到物理内存"
+      "name": "引用透明性",
+      "explanation": "表达式可替换为其值"
     },
     {
-      "name": "上下文切换",
-      "explanation": "保存恢复进程执行状态"
+      "name": "尾递归优化",
+      "explanation": "递归调用在尾部避免栈溢出"
     }
   ],
   "finance_concepts": [
     {
-      "name": "菲利普斯曲线",
-      "explanation": "通胀与失业短期负相关"
-    },
-    {
-      "name": "量化宽松",
-      "explanation": "央行购买资产增加流动性"
-    },
-    {
       "name": "有效市场假说",
-      "explanation": "价格反映所有已知信息"
+      "explanation": "价格反映所有信息"
+    },
+    {
+      "name": "资本资产定价模型",
+      "explanation": "风险与预期收益关系"
+    },
+    {
+      "name": "行为金融学",
+      "explanation": "心理偏差影响投资决策"
     }
   ]
 }
