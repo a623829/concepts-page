@@ -2,43 +2,43 @@
   "ai_concepts": [
     {
       "name": "对抗生成网络",
-      "explanation": "通过博弈训练生成模型"
+      "explanation": "生成器与判别器博弈学习"
+    },
+    {
+      "name": "迁移学习",
+      "explanation": "将源领域知识迁移到目标域"
     },
     {
       "name": "注意力机制",
-      "explanation": "聚焦输入重要部分"
-    },
-    {
-      "name": "策略梯度",
-      "explanation": "直接优化策略参数的方法"
+      "explanation": "模型动态聚焦重要信息部分"
     }
   ],
   "programming_concepts": [
     {
-      "name": "函数式编程",
-      "explanation": "无副作用纯函数计算"
+      "name": "缓存一致性",
+      "explanation": "多核CPU缓存数据同步协议"
     },
     {
-      "name": "引用透明性",
-      "explanation": "表达式可替换为其值"
+      "name": "内存屏障",
+      "explanation": "防止指令重排序的同步指令"
     },
     {
-      "name": "尾递归优化",
-      "explanation": "递归调用在尾部避免栈溢出"
+      "name": "闭包",
+      "explanation": "函数与其引用环境的组合体"
     }
   ],
   "finance_concepts": [
     {
+      "name": "久期",
+      "explanation": "债券价格对利率变化的敏感度"
+    },
+    {
+      "name": "凸性",
+      "explanation": "衡量久期变化率的二阶指标"
+    },
+    {
       "name": "有效市场假说",
-      "explanation": "价格反映所有信息"
-    },
-    {
-      "name": "资本资产定价模型",
-      "explanation": "风险与预期收益关系"
-    },
-    {
-      "name": "行为金融学",
-      "explanation": "心理偏差影响投资决策"
+      "explanation": "价格反映所有可用信息"
     }
   ]
 }
