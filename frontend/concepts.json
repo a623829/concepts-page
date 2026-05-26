@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "自监督学习",
-      "explanation": "无需人工标注，从数据自身学习表示"
+      "name": "对抗生成网络",
+      "explanation": "通过博弈训练生成模型"
     },
     {
-      "name": "扩散模型",
-      "explanation": "通过逐步去噪生成数据的生成模型"
+      "name": "注意力机制",
+      "explanation": "聚焦输入重要部分"
     },
     {
-      "name": "神经架构搜索",
-      "explanation": "自动搜索最优网络结构"
+      "name": "策略梯度",
+      "explanation": "直接优化策略参数的方法"
     }
   ],
   "programming_concepts": [
     {
-      "name": "中断处理",
-      "explanation": "处理器响应外部事件并暂停当前任务"
+      "name": "函数式编程",
+      "explanation": "无副作用纯函数计算"
     },
     {
-      "name": "内存分页",
-      "explanation": "将虚拟地址映射到物理页框"
+      "name": "引用透明性",
+      "explanation": "表达式可替换为其值"
     },
     {
-      "name": "流水线冒险",
-      "explanation": "指令流水线中的数据、控制或结构冲突"
+      "name": "尾递归优化",
+      "explanation": "递归调用在尾部避免栈溢出"
     }
   ],
   "finance_concepts": [
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效"
-    },
-    {
-      "name": "购买力平价",
-      "explanation": "汇率应等于两国物价水平之比"
-    },
-    {
       "name": "有效市场假说",
-      "explanation": "价格反映所有可得信息"
+      "explanation": "价格反映所有信息"
+    },
+    {
+      "name": "资本资产定价模型",
+      "explanation": "风险与预期收益关系"
+    },
+    {
+      "name": "行为金融学",
+      "explanation": "心理偏差影响投资决策"
     }
   ]
 }
