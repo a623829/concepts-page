@@ -651,7 +651,9 @@ body {
 </div>
 
 <!-- 底部 -->
-<div class="footer">数据来源 · DeepSeek V4 Flash 生成</div>
+<div class="footer">
+  <span id="sourceInfo">数据来源 · 本地</span>
+</div>
 
 <script>
 (function () {
@@ -966,6 +968,9 @@ body {
 
   // ====== 数据加载 & 渲染 ======
 
+  // 国内 CDN 备用数据源
+  var CDN_FALLBACK = 'https://cdn.jsdelivr.net/gh/a623829/concepts-page@latest/frontend/concepts.json';
+
   function loadData() {
     // 优先用缓存
     var cached = localStorage.getItem('cached_concepts');
@@ -974,12 +979,21 @@ body {
         var d = JSON.parse(cached);
         if (d.ai_concepts && d.programming_concepts && d.finance_concepts) {
           render(d);
+          // 后台尝试更新缓存
+          fetchFreshData();
           return;
         }
       } catch (e) {}
     }
 
     // 从远程加载
+    fetchFreshData();
+  }
+
+  var sourceEl = document.getElementById('sourceInfo');
+
+  function fetchFreshData() {
+    // 先尝试本地/同源 concepts.json
     fetch('concepts.json?t=' + Date.now())
       .then(function (response) {
         if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -992,16 +1006,33 @@ body {
         render(data);
         localStorage.setItem('cached_concepts', JSON.stringify(data));
         localStorage.setItem('cached_time', Date.now());
+        if (sourceEl) sourceEl.textContent = '数据来源 · 本地';
       })
-      .catch(function (err) {
-        // 如果缓存有数据但远程失败，尝试用缓存
-        if (cached) {
-          try {
-            render(JSON.parse(cached));
-            return;
-          } catch (e) {}
-        }
-        renderError(err);
+      .catch(function () {
+        // 本地失败 → 尝试 jsDelivr CDN（国内可访问）
+        fetch(CDN_FALLBACK + '?t=' + Date.now())
+          .then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+          })
+          .then(function (data) {
+            if (!data.ai_concepts || !data.programming_concepts || !data.finance_concepts) {
+              throw new Error('数据格式不正确');
+            }
+            render(data);
+            localStorage.setItem('cached_concepts', JSON.stringify(data));
+            localStorage.setItem('cached_time', Date.now());
+            if (sourceEl) sourceEl.textContent = '数据来源 · CDN (jsDelivr)';
+            showToast('📡 通过 CDN 加载');
+          })
+          .catch(function () {
+            // CDN 也失败 → 尝试用缓存兜底
+            var c = localStorage.getItem('cached_concepts');
+            if (c) {
+              try { render(JSON.parse(c)); return; } catch (e) {}
+            }
+            renderError(new Error('无法连接数据源，请启动本地服务器'));
+          });
       });
   }
 
@@ -1046,12 +1077,22 @@ body {
     if (isFile) {
       tip =
         '<p style="margin-top:16px;font-size:0.85rem;">' +
-          '提示：如果你是用浏览器直接打开了这个 HTML 文件（file:// 协议），' +
-          'fetch 可能被浏览器安全策略阻止。<br>' +
-          '请在终端执行以下命令启动本地服务器后再访问：' +
+          '提示：浏览器安全策略限制 file:// 协议使用 fetch。<br>' +
+          '请使用以下方式之一：' +
         '</p>' +
-        '<p style="margin-top:8px;"><code>cd frontend && python -m http.server 8000</code></p>' +
-        '<p style="margin-top:4px;font-size:0.85rem;">然后打开 <code>http://localhost:8000</code></p>';
+        '<p style="margin-top:12px;text-align:left;max-width:360px;margin-left:auto;margin-right:auto;">' +
+          '<strong>方式一：双击启动脚本</strong><br>' +
+          '<code style="font-size:0.82rem;">双击项目目录下的 start.bat</code>' +
+        '</p>' +
+        '<p style="margin-top:8px;text-align:left;max-width:360px;margin-left:auto;margin-right:auto;">' +
+          '<strong>方式二：手动启动 Python 服务器</strong><br>' +
+          '<code style="font-size:0.82rem;">cd frontend && python -m http.server 8899</code><br>' +
+          '<span style="font-size:0.82rem;">然后打开 http://localhost:8899</span>' +
+        '</p>' +
+        '<p style="margin-top:8px;font-size:0.84rem;color:var(--accent);">' +
+          '国内用户也可访问 CDN 备用链接：<br>' +
+          '<code style="font-size:0.82rem;">https://cdn.jsdelivr.net/gh/a623829/concepts-page@latest/frontend/index.html</code>' +
+        '</p>';
     }
 
     contentEl.innerHTML =
