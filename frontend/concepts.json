@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "注意力机制",
-      "explanation": "让模型聚焦重要部分的组件"
+      "name": "自监督学习",
+      "explanation": "无需人工标注，从数据自身学习表示"
     },
     {
-      "name": "对抗生成网络",
-      "explanation": "生成器与判别器对抗训练"
+      "name": "扩散模型",
+      "explanation": "通过逐步去噪生成数据的生成模型"
     },
     {
-      "name": "因果推理",
-      "explanation": "从数据推断因果关系的方法"
+      "name": "神经架构搜索",
+      "explanation": "自动搜索最优网络结构"
     }
   ],
   "programming_concepts": [
     {
-      "name": "闭包",
-      "explanation": "函数及其环境变量的结合"
+      "name": "中断处理",
+      "explanation": "处理器响应外部事件并暂停当前任务"
     },
     {
-      "name": "尾递归优化",
-      "explanation": "避免递归栈溢出的技术"
+      "name": "内存分页",
+      "explanation": "将虚拟地址映射到物理页框"
     },
     {
-      "name": "引用透明性",
-      "explanation": "表达式可被值替代不影响结果"
+      "name": "流水线冒险",
+      "explanation": "指令流水线中的数据、控制或结构冲突"
     }
   ],
   "finance_concepts": [
     {
-      "name": "无套利定价",
-      "explanation": "价格应消除套利机会"
+      "name": "流动性陷阱",
+      "explanation": "利率极低时货币政策失效"
+    },
+    {
+      "name": "购买力平价",
+      "explanation": "汇率应等于两国物价水平之比"
     },
     {
       "name": "有效市场假说",
-      "explanation": "价格充分反映所有信息"
-    },
-    {
-      "name": "行为金融",
-      "explanation": "研究心理对金融决策的影响"
+      "explanation": "价格反映所有可得信息"
     }
   ]
 }
