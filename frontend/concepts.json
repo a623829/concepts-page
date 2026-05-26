@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "自注意力机制",
-      "explanation": "计算序列中元素间相关性权重"
+      "name": "注意力机制",
+      "explanation": "让模型聚焦重要部分的组件"
     },
     {
-      "name": "扩散模型",
-      "explanation": "通过逐步去噪生成数据"
+      "name": "对抗生成网络",
+      "explanation": "生成器与判别器对抗训练"
     },
     {
-      "name": "残差连接",
-      "explanation": "跨层跳跃缓解梯度消失"
+      "name": "因果推理",
+      "explanation": "从数据推断因果关系的方法"
     }
   ],
   "programming_concepts": [
     {
-      "name": "引用计数",
-      "explanation": "通过计数管理对象生命周期"
+      "name": "闭包",
+      "explanation": "函数及其环境变量的结合"
     },
     {
-      "name": "虚拟内存",
-      "explanation": "映射逻辑地址到物理内存"
+      "name": "尾递归优化",
+      "explanation": "避免递归栈溢出的技术"
     },
     {
-      "name": "上下文切换",
-      "explanation": "保存恢复进程执行状态"
+      "name": "引用透明性",
+      "explanation": "表达式可被值替代不影响结果"
     }
   ],
   "finance_concepts": [
     {
-      "name": "菲利普斯曲线",
-      "explanation": "通胀与失业短期负相关"
-    },
-    {
-      "name": "量化宽松",
-      "explanation": "央行购买资产增加流动性"
+      "name": "无套利定价",
+      "explanation": "价格应消除套利机会"
     },
     {
       "name": "有效市场假说",
-      "explanation": "价格反映所有已知信息"
+      "explanation": "价格充分反映所有信息"
+    },
+    {
+      "name": "行为金融",
+      "explanation": "研究心理对金融决策的影响"
     }
   ]
 }
