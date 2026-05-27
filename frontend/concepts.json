@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经架构搜索",
-      "explanation": "自动搜索最优神经网络结构。"
+      "name": "生成对抗网络",
+      "explanation": "两个网络对抗训练生成新数据"
     },
     {
-      "name": "知识蒸馏",
-      "explanation": "大模型压缩知识到小模型。"
+      "name": "注意力机制",
+      "explanation": "模型聚焦输入重要部分的方法"
     },
     {
-      "name": "元学习",
-      "explanation": "学习如何快速适应新任务。"
+      "name": "迁移学习",
+      "explanation": "将知识从任务迁移到新任务"
     }
   ],
   "programming_concepts": [
     {
-      "name": "持久化数据结构",
-      "explanation": "操作后保留旧版本的数据结构。"
+      "name": "虚拟内存",
+      "explanation": "抽象内存空间，扩展物理内存"
     },
     {
-      "name": "代数效应",
-      "explanation": "将效果与计算逻辑分离的抽象。"
+      "name": "冯·诺依曼架构",
+      "explanation": "存储程序指令和数据在同一内存"
     },
     {
-      "name": "延续",
-      "explanation": "表示程序剩余计算的抽象。"
+      "name": "编译器优化",
+      "explanation": "改进代码效率与资源利用"
     }
   ],
   "finance_concepts": [
     {
-      "name": "久期",
-      "explanation": "债券价格对利率变化的敏感度。"
+      "name": "边际效用",
+      "explanation": "额外消费带来的满意度增量"
     },
     {
-      "name": "凸性",
-      "explanation": "衡量久期随利率变化的速率。"
+      "name": "机会成本",
+      "explanation": "放弃次优选择的代价"
     },
     {
-      "name": "风险价值",
-      "explanation": "一定置信水平下的最大可能损失。"
+      "name": "流动性陷阱",
+      "explanation": "利率极低时货币政策失效"
     }
   ]
 }
