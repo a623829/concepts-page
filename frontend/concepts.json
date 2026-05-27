@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "元学习",
-      "explanation": "让模型快速适应新任务的学习方法"
-    },
-    {
-      "name": "自监督学习",
-      "explanation": "无需人工标注，从数据本身学习"
-    },
-    {
       "name": "神经架构搜索",
-      "explanation": "自动设计神经网络结构的方法"
+      "explanation": "自动搜索最优神经网络结构。"
+    },
+    {
+      "name": "知识蒸馏",
+      "explanation": "大模型压缩知识到小模型。"
+    },
+    {
+      "name": "元学习",
+      "explanation": "学习如何快速适应新任务。"
     }
   ],
   "programming_concepts": [
     {
-      "name": "闭包",
-      "explanation": "函数记住并访问其外部作用域变量"
+      "name": "持久化数据结构",
+      "explanation": "操作后保留旧版本的数据结构。"
     },
     {
-      "name": "协程",
-      "explanation": "允许暂停和恢复执行的函数"
+      "name": "代数效应",
+      "explanation": "将效果与计算逻辑分离的抽象。"
     },
     {
-      "name": "内存对齐",
-      "explanation": "按特定字节边界存储数据以提高效率"
+      "name": "延续",
+      "explanation": "表示程序剩余计算的抽象。"
     }
   ],
   "finance_concepts": [
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时，货币需求无限大"
+      "name": "久期",
+      "explanation": "债券价格对利率变化的敏感度。"
     },
     {
-      "name": "菲利普斯曲线",
-      "explanation": "通胀率与失业率呈反向关系"
+      "name": "凸性",
+      "explanation": "衡量久期随利率变化的速率。"
     },
     {
-      "name": "基尼系数",
-      "explanation": "0到1之间，数值越大越不平等"
+      "name": "风险价值",
+      "explanation": "一定置信水平下的最大可能损失。"
     }
   ]
 }
