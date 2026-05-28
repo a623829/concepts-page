@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "生成对抗网络",
-      "explanation": "两个网络对抗训练生成新数据"
+      "name": "涌现能力",
+      "explanation": "系统整体出现部分不具备的特性"
     },
     {
-      "name": "注意力机制",
-      "explanation": "模型聚焦输入重要部分的方法"
+      "name": "思维链",
+      "explanation": "引导模型逐步推理的技术"
     },
     {
-      "name": "迁移学习",
-      "explanation": "将知识从任务迁移到新任务"
+      "name": "神经架构搜索",
+      "explanation": "自动搜索最优神经网络结构"
     }
   ],
   "programming_concepts": [
     {
-      "name": "虚拟内存",
-      "explanation": "抽象内存空间，扩展物理内存"
+      "name": "闭包",
+      "explanation": "函数捕获外部变量的机制"
     },
     {
-      "name": "冯·诺依曼架构",
-      "explanation": "存储程序指令和数据在同一内存"
+      "name": "协程",
+      "explanation": "用户态轻量级线程的抽象"
     },
     {
-      "name": "编译器优化",
-      "explanation": "改进代码效率与资源利用"
+      "name": "内存屏障",
+      "explanation": "防止CPU指令重排序的指令"
     }
   ],
   "finance_concepts": [
     {
-      "name": "边际效用",
-      "explanation": "额外消费带来的满意度增量"
-    },
-    {
-      "name": "机会成本",
-      "explanation": "放弃次优选择的代价"
-    },
-    {
       "name": "流动性陷阱",
       "explanation": "利率极低时货币政策失效"
+    },
+    {
+      "name": "格雷欣法则",
+      "explanation": "劣币驱逐良币的现象"
+    },
+    {
+      "name": "帕累托最优",
+      "explanation": "无法让任何人变好的资源分配"
     }
   ]
 }
