@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经架构搜索",
-      "explanation": "自动搜索最优神经网络结构的方法"
+      "name": "扩散模型",
+      "explanation": "通过逐步去噪生成数据的模型"
     },
     {
-      "name": "对抗样本",
-      "explanation": "轻微扰动导致模型误判的输入"
+      "name": "自监督学习",
+      "explanation": "利用数据自身结构训练模型"
     },
     {
       "name": "知识蒸馏",
-      "explanation": "将大模型知识迁移到小模型的技术"
+      "explanation": "将大模型知识迁移到小模型"
     }
   ],
   "programming_concepts": [
     {
-      "name": "垃圾回收",
-      "explanation": "自动管理内存释放的机制"
+      "name": "内存屏障",
+      "explanation": "保证多核CPU内存操作顺序"
     },
     {
-      "name": "缓存一致性",
-      "explanation": "多核CPU缓存数据同步协议"
+      "name": "尾调用优化",
+      "explanation": "避免递归栈溢出的一种优化"
     },
     {
-      "name": "指令流水线",
-      "explanation": "并行执行指令阶段的技术"
+      "name": "协程",
+      "explanation": "用户态轻量级并发执行单元"
     }
   ],
   "finance_concepts": [
     {
-      "name": "机会成本",
-      "explanation": "放弃次优选择的价值"
+      "name": "费雪效应",
+      "explanation": "名义利率等于实际利率加通胀"
     },
     {
-      "name": "纳什均衡",
-      "explanation": "博弈中无人能单方面改变策略的状态"
+      "name": "菲利普斯曲线",
+      "explanation": "通胀与失业率负相关关系"
     },
     {
-      "name": "信息不对称",
-      "explanation": "交易双方信息不均衡的现象"
+      "name": "购买力平价",
+      "explanation": "汇率应反映两国物价水平比"
     }
   ]
 }
