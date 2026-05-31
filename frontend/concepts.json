@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "扩散模型",
-      "explanation": "通过逐步去噪生成数据的模型"
+      "name": "残差网络",
+      "explanation": "通过跳跃连接解决深层网络退化问题"
     },
     {
-      "name": "自监督学习",
-      "explanation": "利用数据自身结构训练模型"
+      "name": "注意力机制",
+      "explanation": "让模型动态聚焦输入重要部分"
     },
     {
-      "name": "知识蒸馏",
-      "explanation": "将大模型知识迁移到小模型"
+      "name": "生成对抗网络",
+      "explanation": "两个网络对抗训练以生成逼真数据"
     }
   ],
   "programming_concepts": [
     {
       "name": "内存屏障",
-      "explanation": "保证多核CPU内存操作顺序"
+      "explanation": "防止指令重排序以保证内存可见性"
     },
     {
-      "name": "尾调用优化",
-      "explanation": "避免递归栈溢出的一种优化"
+      "name": "尾递归优化",
+      "explanation": "将递归转为循环避免栈溢出"
     },
     {
-      "name": "协程",
-      "explanation": "用户态轻量级并发执行单元"
+      "name": "引用计数",
+      "explanation": "通过计数管理对象生命周期"
     }
   ],
   "finance_concepts": [
     {
-      "name": "费雪效应",
-      "explanation": "名义利率等于实际利率加通胀"
+      "name": "基尼系数",
+      "explanation": "衡量收入分配不平等程度"
+    },
+    {
+      "name": "流动性陷阱",
+      "explanation": "利率极低时货币政策失效"
     },
     {
       "name": "菲利普斯曲线",
-      "explanation": "通胀与失业率负相关关系"
-    },
-    {
-      "name": "购买力平价",
-      "explanation": "汇率应反映两国物价水平比"
+      "explanation": "描述通胀与失业负相关"
     }
   ]
 }
