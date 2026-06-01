@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "残差网络",
-      "explanation": "通过跳跃连接解决深层网络退化问题"
-    },
-    {
       "name": "注意力机制",
-      "explanation": "让模型动态聚焦输入重要部分"
+      "explanation": "让模型聚焦输入关键部分"
     },
     {
       "name": "生成对抗网络",
-      "explanation": "两个网络对抗训练以生成逼真数据"
+      "explanation": "两个网络相互博弈生成数据"
+    },
+    {
+      "name": "迁移学习",
+      "explanation": "利用预训练模型解决新任务"
     }
   ],
   "programming_concepts": [
     {
-      "name": "内存屏障",
-      "explanation": "防止指令重排序以保证内存可见性"
+      "name": "图灵完备",
+      "explanation": "能模拟任何可计算问题的系统"
     },
     {
-      "name": "尾递归优化",
-      "explanation": "将递归转为循环避免栈溢出"
+      "name": "惰性求值",
+      "explanation": "延迟计算直到需要结果时"
     },
     {
-      "name": "引用计数",
-      "explanation": "通过计数管理对象生命周期"
+      "name": "引用透明",
+      "explanation": "表达式可被其值替换不变结果"
     }
   ],
   "finance_concepts": [
     {
-      "name": "基尼系数",
-      "explanation": "衡量收入分配不平等程度"
+      "name": "边际效用",
+      "explanation": "每增加一单位消费的满足感"
+    },
+    {
+      "name": "机会成本",
+      "explanation": "放弃次优选择的价值损失"
     },
     {
       "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效"
-    },
-    {
-      "name": "菲利普斯曲线",
-      "explanation": "描述通胀与失业负相关"
+      "explanation": "利率低时货币政策失效"
     }
   ]
 }
