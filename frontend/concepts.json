@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "对抗训练",
-      "explanation": "通过对抗样本增强模型鲁棒性"
+      "name": "神经架构搜索",
+      "explanation": "自动搜索最佳神经网络结构"
     },
     {
-      "name": "知识蒸馏",
-      "explanation": "大模型指导小模型学习的方法"
+      "name": "自监督学习",
+      "explanation": "利用数据自身结构进行学习"
     },
     {
-      "name": "视觉Transformer",
-      "explanation": "用注意力机制处理图像数据"
+      "name": "元学习",
+      "explanation": "学会学习，快速适应新任务"
     }
   ],
   "programming_concepts": [
     {
-      "name": "内存管理",
-      "explanation": "分配和回收程序内存资源"
+      "name": "垃圾回收",
+      "explanation": "自动回收不再使用的内存"
     },
     {
-      "name": "函数式编程",
-      "explanation": "以纯函数为核心编程范式"
+      "name": "指令流水线",
+      "explanation": "将指令分解多阶段并行执行"
     },
     {
-      "name": "并发模型",
-      "explanation": "多任务同时执行的设计模式"
+      "name": "缓存一致性",
+      "explanation": "多核CPU缓存数据同步机制"
     }
   ],
   "finance_concepts": [
     {
-      "name": "边际效用",
-      "explanation": "每增加一单位带来的满足变化"
+      "name": "套利定价理论",
+      "explanation": "多因子模型解释资产收益"
     },
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时货币需求无限大"
+      "name": "行为金融学",
+      "explanation": "研究心理偏差对决策影响"
     },
     {
-      "name": "菲利普斯曲线",
-      "explanation": "通胀与失业率的反向关系"
+      "name": "久期",
+      "explanation": "债券价格对利率变化的敏感度"
     }
   ]
 }
