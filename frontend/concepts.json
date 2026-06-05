@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经架构搜索",
-      "explanation": "自动搜索最佳神经网络结构"
+      "name": "图神经网络",
+      "explanation": "处理图结构数据的神经网络"
+    },
+    {
+      "name": "因果推理",
+      "explanation": "从观测数据推断因果关系"
     },
     {
       "name": "自监督学习",
-      "explanation": "利用数据自身结构进行学习"
-    },
-    {
-      "name": "元学习",
-      "explanation": "学会学习，快速适应新任务"
+      "explanation": "利用无标签数据预训练模型"
     }
   ],
   "programming_concepts": [
     {
-      "name": "垃圾回收",
-      "explanation": "自动回收不再使用的内存"
+      "name": "内存管理",
+      "explanation": "分配和释放程序内存资源"
     },
     {
-      "name": "指令流水线",
-      "explanation": "将指令分解多阶段并行执行"
+      "name": "分布式一致性",
+      "explanation": "多节点数据达成相同状态"
     },
     {
-      "name": "缓存一致性",
-      "explanation": "多核CPU缓存数据同步机制"
+      "name": "类型系统",
+      "explanation": "规定数据类型及其操作规则"
     }
   ],
   "finance_concepts": [
     {
+      "name": "货币乘数",
+      "explanation": "基础货币通过银行体系扩张倍数"
+    },
+    {
+      "name": "比较优势",
+      "explanation": "国家专注生产相对效率高的商品"
+    },
+    {
       "name": "套利定价理论",
-      "explanation": "多因子模型解释资产收益"
-    },
-    {
-      "name": "行为金融学",
-      "explanation": "研究心理偏差对决策影响"
-    },
-    {
-      "name": "久期",
-      "explanation": "债券价格对利率变化的敏感度"
+      "explanation": "资产价格由多因素线性模型决定"
     }
   ]
 }
