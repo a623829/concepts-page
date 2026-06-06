@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "图神经网络",
-      "explanation": "处理图结构数据的神经网络"
+      "name": "神经图灵机",
+      "explanation": "结合神经网络与外部存储的架构"
     },
     {
-      "name": "因果推理",
-      "explanation": "从观测数据推断因果关系"
+      "name": "胶囊网络",
+      "explanation": "通过向量代替标量保留空间层次"
     },
     {
-      "name": "自监督学习",
-      "explanation": "利用无标签数据预训练模型"
+      "name": "生成对抗网络",
+      "explanation": "双网络博弈产生真实数据分布"
     }
   ],
   "programming_concepts": [
     {
-      "name": "内存管理",
-      "explanation": "分配和释放程序内存资源"
+      "name": "闭包",
+      "explanation": "函数与其捕获的外层变量绑定"
     },
     {
-      "name": "分布式一致性",
-      "explanation": "多节点数据达成相同状态"
+      "name": "协程",
+      "explanation": "可暂停恢复的轻量级执行单元"
     },
     {
-      "name": "类型系统",
-      "explanation": "规定数据类型及其操作规则"
+      "name": "虚函数表",
+      "explanation": "存储虚函数地址的运行时结构"
     }
   ],
   "finance_concepts": [
     {
-      "name": "货币乘数",
-      "explanation": "基础货币通过银行体系扩张倍数"
+      "name": "菲利普斯曲线",
+      "explanation": "失业与通胀的负相关关系"
     },
     {
-      "name": "比较优势",
-      "explanation": "国家专注生产相对效率高的商品"
+      "name": "购买力平价",
+      "explanation": "同商品在不同国家的价格平衡"
     },
     {
-      "name": "套利定价理论",
-      "explanation": "资产价格由多因素线性模型决定"
+      "name": "流动性陷阱",
+      "explanation": "利率极低时货币政策失效现象"
     }
   ]
 }
