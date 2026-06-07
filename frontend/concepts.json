@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经图灵机",
-      "explanation": "结合神经网络与外部存储的架构"
+      "name": "对抗样本",
+      "explanation": "故意扰动输入欺骗模型"
     },
     {
-      "name": "胶囊网络",
-      "explanation": "通过向量代替标量保留空间层次"
+      "name": "知识蒸馏",
+      "explanation": "大模型教小模型知识"
     },
     {
-      "name": "生成对抗网络",
-      "explanation": "双网络博弈产生真实数据分布"
+      "name": "元学习",
+      "explanation": "学习如何学习，快速适应新任务"
     }
   ],
   "programming_concepts": [
     {
       "name": "闭包",
-      "explanation": "函数与其捕获的外层变量绑定"
+      "explanation": "函数与其环境绑定的组合"
     },
     {
-      "name": "协程",
-      "explanation": "可暂停恢复的轻量级执行单元"
+      "name": "惰性求值",
+      "explanation": "延迟计算直到真正需要结果"
     },
     {
-      "name": "虚函数表",
-      "explanation": "存储虚函数地址的运行时结构"
+      "name": "类型类",
+      "explanation": "定义一组行为的抽象接口"
     }
   ],
   "finance_concepts": [
     {
-      "name": "菲利普斯曲线",
-      "explanation": "失业与通胀的负相关关系"
-    },
-    {
-      "name": "购买力平价",
-      "explanation": "同商品在不同国家的价格平衡"
+      "name": "有效市场假说",
+      "explanation": "价格反映所有可用信息"
     },
     {
       "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效现象"
+      "explanation": "利率极低时货币政策失效"
+    },
+    {
+      "name": "菲利普斯曲线",
+      "explanation": "通胀与失业呈反向关系"
     }
   ]
 }
