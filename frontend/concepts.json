@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "对抗样本",
-      "explanation": "故意扰动输入欺骗模型"
+      "name": "残差网络",
+      "explanation": "解决深层网络退化问题"
     },
     {
-      "name": "知识蒸馏",
-      "explanation": "大模型教小模型知识"
+      "name": "注意力机制",
+      "explanation": "动态加权输入信息"
     },
     {
-      "name": "元学习",
-      "explanation": "学习如何学习，快速适应新任务"
+      "name": "生成对抗网络",
+      "explanation": "通过博弈训练生成模型"
     }
   ],
   "programming_concepts": [
     {
       "name": "闭包",
-      "explanation": "函数与其环境绑定的组合"
+      "explanation": "函数携带其定义环境"
     },
     {
-      "name": "惰性求值",
-      "explanation": "延迟计算直到真正需要结果"
+      "name": "协程",
+      "explanation": "可暂停和恢复的函数"
     },
     {
-      "name": "类型类",
-      "explanation": "定义一组行为的抽象接口"
+      "name": "内存屏障",
+      "explanation": "防止指令重排序"
     }
   ],
   "finance_concepts": [
     {
       "name": "有效市场假说",
-      "explanation": "价格反映所有可用信息"
+      "explanation": "价格反映所有信息"
     },
     {
       "name": "流动性陷阱",
       "explanation": "利率极低时货币政策失效"
     },
     {
-      "name": "菲利普斯曲线",
-      "explanation": "通胀与失业呈反向关系"
+      "name": "资本资产定价模型",
+      "explanation": "风险与预期收益关系"
     }
   ]
 }
