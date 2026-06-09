@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "残差网络",
-      "explanation": "解决深层网络退化问题"
+      "name": "神经符号系统",
+      "explanation": "融合神经网络与符号推理的混合架构"
     },
     {
-      "name": "注意力机制",
-      "explanation": "动态加权输入信息"
+      "name": "自监督学习",
+      "explanation": "利用数据自身结构生成监督信号训练"
     },
     {
-      "name": "生成对抗网络",
-      "explanation": "通过博弈训练生成模型"
+      "name": "元学习",
+      "explanation": "学习如何学习，快速适应新任务"
     }
   ],
   "programming_concepts": [
     {
       "name": "闭包",
-      "explanation": "函数携带其定义环境"
+      "explanation": "函数与其捕获的变量环境组成的实体"
     },
     {
       "name": "协程",
-      "explanation": "可暂停和恢复的函数"
+      "explanation": "可暂停和恢复执行的函数，支持异步"
     },
     {
-      "name": "内存屏障",
-      "explanation": "防止指令重排序"
+      "name": "内存模型",
+      "explanation": "定义线程间共享内存的访问规则"
     }
   ],
   "finance_concepts": [
     {
-      "name": "有效市场假说",
-      "explanation": "价格反映所有信息"
-    },
-    {
       "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效"
+      "explanation": "利率极低时货币政策失效的现象"
     },
     {
-      "name": "资本资产定价模型",
-      "explanation": "风险与预期收益关系"
+      "name": "菲利普斯曲线",
+      "explanation": "描述失业率与通胀负相关的关系"
+    },
+    {
+      "name": "有效市场假说",
+      "explanation": "价格已反映所有可用信息"
     }
   ]
 }
