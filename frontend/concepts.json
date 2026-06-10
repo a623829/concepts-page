@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经符号系统",
-      "explanation": "融合神经网络与符号推理的混合架构"
+      "name": "胶囊网络",
+      "explanation": "用向量代替标量表示特征"
     },
     {
-      "name": "自监督学习",
-      "explanation": "利用数据自身结构生成监督信号训练"
+      "name": "神经图灵机",
+      "explanation": "结合外部存储增强记忆能力"
     },
     {
-      "name": "元学习",
-      "explanation": "学习如何学习，快速适应新任务"
+      "name": "对抗生成网络",
+      "explanation": "生成器与判别器博弈训练"
     }
   ],
   "programming_concepts": [
     {
-      "name": "闭包",
-      "explanation": "函数与其捕获的变量环境组成的实体"
+      "name": "缓存一致性",
+      "explanation": "多核CPU缓存数据同步机制"
     },
     {
-      "name": "协程",
-      "explanation": "可暂停和恢复执行的函数，支持异步"
+      "name": "内存屏障",
+      "explanation": "防止指令重排序的同步指令"
     },
     {
-      "name": "内存模型",
-      "explanation": "定义线程间共享内存的访问规则"
+      "name": "中断向量表",
+      "explanation": "存储中断处理程序地址表"
     }
   ],
   "finance_concepts": [
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效的现象"
+      "name": "货币乘数",
+      "explanation": "存款创造导致货币供给倍数"
     },
     {
-      "name": "菲利普斯曲线",
-      "explanation": "描述失业率与通胀负相关的关系"
+      "name": "购买力平价",
+      "explanation": "汇率应等于价格水平之比"
     },
     {
       "name": "有效市场假说",
-      "explanation": "价格已反映所有可用信息"
+      "explanation": "股价反映所有可得信息"
     }
   ]
 }
