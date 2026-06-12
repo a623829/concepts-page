@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "神经架构搜索",
-      "explanation": "自动搜索最优网络结构的方法"
-    },
-    {
       "name": "元学习",
-      "explanation": "学会如何学习的机器学习方法"
+      "explanation": "让模型学会学习的方法"
     },
     {
-      "name": "知识蒸馏",
-      "explanation": "将大模型知识转移到小模型"
+      "name": "神经架构搜索",
+      "explanation": "自动搜索最优网络结构"
+    },
+    {
+      "name": "胶囊网络",
+      "explanation": "解决CNN空间层次关系"
     }
   ],
   "programming_concepts": [
     {
-      "name": "指令流水线",
-      "explanation": "并行执行多条指令的阶段"
-    },
-    {
-      "name": "缓存一致性",
-      "explanation": "多核缓存数据一致性问题"
+      "name": "函数式编程",
+      "explanation": "以函数为基本单位的编程范式"
     },
     {
       "name": "虚拟内存",
-      "explanation": "通过磁盘模拟更大内存空间"
+      "explanation": "抽象内存空间扩大可用内存"
+    },
+    {
+      "name": "并发模型",
+      "explanation": "管理多任务执行的方式"
     }
   ],
   "finance_concepts": [
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效"
-    },
-    {
-      "name": "菲利普斯曲线",
-      "explanation": "通胀与失业的负相关关系"
+      "name": "有效市场假说",
+      "explanation": "市场价格反映所有信息"
     },
     {
       "name": "套利定价理论",
-      "explanation": "多因素模型解释资产收益"
+      "explanation": "资产收益由多因子决定"
+    },
+    {
+      "name": "行为金融学",
+      "explanation": "心理因素影响金融决策"
     }
   ]
 }
