@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "元学习",
-      "explanation": "让模型学会学习的方法"
+      "name": "扩散模型",
+      "explanation": "通过逐步加噪去噪生成数据"
     },
     {
-      "name": "神经架构搜索",
-      "explanation": "自动搜索最优网络结构"
+      "name": "自注意力机制",
+      "explanation": "计算序列内部元素关联权重"
     },
     {
-      "name": "胶囊网络",
-      "explanation": "解决CNN空间层次关系"
+      "name": "对抗训练",
+      "explanation": "通过对抗样本提升模型鲁棒性"
     }
   ],
   "programming_concepts": [
     {
-      "name": "函数式编程",
-      "explanation": "以函数为基本单位的编程范式"
+      "name": "引用计数",
+      "explanation": "通过计数管理对象生命周期"
     },
     {
-      "name": "虚拟内存",
-      "explanation": "抽象内存空间扩大可用内存"
+      "name": "惰性求值",
+      "explanation": "延迟计算直到结果真正需要"
     },
     {
-      "name": "并发模型",
-      "explanation": "管理多任务执行的方式"
+      "name": "协程",
+      "explanation": "用户态轻量级线程调度单元"
     }
   ],
   "finance_concepts": [
     {
-      "name": "有效市场假说",
-      "explanation": "市场价格反映所有信息"
+      "name": "流动性陷阱",
+      "explanation": "利率极低时货币政策失效"
     },
     {
-      "name": "套利定价理论",
-      "explanation": "资产收益由多因子决定"
+      "name": "菲利普斯曲线",
+      "explanation": "通胀与失业率负相关关系"
     },
     {
-      "name": "行为金融学",
-      "explanation": "心理因素影响金融决策"
+      "name": "货币乘数",
+      "explanation": "基础货币创造存款货币倍数"
     }
   ]
 }
