@@ -1,44 +1,44 @@
 {
   "ai_concepts": [
     {
-      "name": "扩散模型",
-      "explanation": "通过逐步加噪去噪生成数据"
-    },
-    {
       "name": "自注意力机制",
-      "explanation": "计算序列内部元素关联权重"
+      "explanation": "模型内部关注不同位置信息"
     },
     {
-      "name": "对抗训练",
-      "explanation": "通过对抗样本提升模型鲁棒性"
+      "name": "知识蒸馏",
+      "explanation": "将大模型知识迁移到小模型"
+    },
+    {
+      "name": "元学习",
+      "explanation": "学习如何学习，快速适应新任务"
     }
   ],
   "programming_concepts": [
     {
-      "name": "引用计数",
-      "explanation": "通过计数管理对象生命周期"
+      "name": "虚拟内存",
+      "explanation": "将磁盘作为内存扩展的机制"
     },
     {
-      "name": "惰性求值",
-      "explanation": "延迟计算直到结果真正需要"
+      "name": "上下文切换",
+      "explanation": "CPU在不同进程间切换状态"
     },
     {
-      "name": "协程",
-      "explanation": "用户态轻量级线程调度单元"
+      "name": "指令流水线",
+      "explanation": "将指令执行分成多个阶段并行"
     }
   ],
   "finance_concepts": [
     {
-      "name": "流动性陷阱",
-      "explanation": "利率极低时货币政策失效"
+      "name": "套利",
+      "explanation": "利用价差无风险获利"
     },
     {
-      "name": "菲利普斯曲线",
-      "explanation": "通胀与失业率负相关关系"
+      "name": "久期",
+      "explanation": "债券价格对利率变动的敏感度"
     },
     {
-      "name": "货币乘数",
-      "explanation": "基础货币创造存款货币倍数"
+      "name": "夏普比率",
+      "explanation": "衡量风险调整后收益的指标"
     }
   ]
 }
